@@ -1,7 +1,14 @@
+import com.jcabi.http.Response;
+import com.jcabi.http.request.JdkRequest;
+import com.jcabi.http.response.JsonResponse;
+import org.codehaus.jackson.map.ObjectMapper;
+import sun.net.www.http.HttpClient;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.json.*;
 
 public class Main {
 
@@ -10,6 +17,7 @@ public class Main {
         int num_of_repos;
         int num_of_contributers;
 
+        // Checking if the commandline parameters' amount true
         if(args.length < 3){
             System.out.println("### Usage ####");
             System.out.println("Invalid amount of parameters.");
@@ -21,26 +29,23 @@ public class Main {
         organization = args[0];
         num_of_repos = Integer.parseInt(args[1]);
         num_of_contributers = Integer.parseInt(args[2]);
-
+        String repos_url;
 
         try {
 
-            URL url = new URL("https://api.github.com/orgs/"+organization);//your url i.e fetch data from .
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/vnd.github.v3+jwon");
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP Error code : "
-                        + conn.getResponseCode());
-            }
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-            BufferedReader br = new BufferedReader(in);
-            String output;
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-            conn.disconnect();
+            Response org_response = new JdkRequest("https://api.github.com/orgs/"+organization)
+                                        .fetch();
 
+            if(org_response.status() < 200 || org_response.status()>299){
+                System.out.println("An error occured");
+                System.out.println("Response status code : "+org_response.status());
+                System.out.println("Terminating");
+                System.exit(-1);
+            }
+
+            repos_url = org_response.as(JsonResponse.class).json().readObject().getString("repos_url");
+
+            System.out.println(repos_url);
         } catch (Exception e) {
             System.out.println("Exception in NetClientGet:- " + e);
         }
