@@ -1,0 +1,11 @@
+repo,forks,url,description
+spark,24683,https://github.com/apache/spark,Apache Spark - A unified analytics engine for large-scale data processing
+dubbo,24228,https://github.com/apache/dubbo,Apache Dubbo is a high-performance, java based, open source RPC framework.
+echarts,18211,https://github.com/apache/echarts,Apache ECharts is a powerful, interactive charting and data visualization library for browser
+kafka,10697,https://github.com/apache/kafka,Mirror of Apache Kafka
+flink,9770,https://github.com/apache/flink,Apache Flink
+airflow,9516,https://github.com/apache/airflow,Apache Airflow - A platform to programmatically author, schedule, and monitor workflows
+superset,8067,https://github.com/apache/superset,Apache Superset is a Data Visualization and Data Exploration Platform
+hadoop,7477,https://github.com/apache/hadoop,Apache Hadoop
+incubator-mxnet,6874,https://github.com/apache/incubator-mxnet,Lightweight, Portable, Flexible Distributed/Mobile Deep Learning with Dynamic, Mutation-aware Dataflow Dep Scheduler; for Python, R, Julia, Scala, Go, Javascript and more
+zookeeper,6305,https://github.com/apache/zookeeper,Apache ZooKeeper

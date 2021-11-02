@@ -2,6 +2,7 @@ public class Repository implements Comparable<Repository> {
 
     // Class members
     private String repo_name;   // json field - name
+    private String api_url;     // json field - url
     private Integer fork_number;    // json filed - forks_count
     private String repo_url;    // json field - html_url
     private String description; // json field - description
@@ -44,6 +45,14 @@ public class Repository implements Comparable<Repository> {
 
     public void setRepo_url(String repo_url) {
         this.repo_url = repo_url;
+    }
+
+    public String getApi_url() {
+        return api_url;
+    }
+
+    public void setApi_url(String api_url) {
+        this.api_url = api_url;
     }
 
     public String getDescription() {

@@ -1,6 +1,6 @@
 public class User implements Comparable<User>{
 
-    private String user_url;  // json field - url
+
     private String repo_name; // passed by repo itself
     private String username;  // json field - login
     private Integer commit_count; // json field - contributions
@@ -10,20 +10,14 @@ public class User implements Comparable<User>{
     }
 
     public User(String user_url, String repo_name, String username, Integer commit_count, Integer followers) {
-        this.user_url = user_url;
+
         this.repo_name = repo_name;
         this.username = username;
         this.commit_count = commit_count;
         this.followers = followers;
     }
 
-    public String getUser_url() {
-        return user_url;
-    }
 
-    public void setUser_url(String user_url) {
-        this.user_url = user_url;
-    }
 
     public String getRepo_name() {
         return repo_name;
