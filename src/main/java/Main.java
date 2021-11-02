@@ -2,6 +2,7 @@ import com.jcabi.http.Response;
 import com.jcabi.http.request.JdkRequest;
 import com.jcabi.http.response.JsonResponse;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.util.Comparators;
 import sun.net.www.http.HttpClient;
 
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import javax.json.*;
 
@@ -57,7 +59,9 @@ public class Main {
             fill_repo_list(repos_url,total_org_repo);
             System.out.println("Repositories fetched. Total Public repositories : "+repositoryList.size());
 
-
+            System.out.println("Repositories are being sorted...");
+            repositoryList.sort(Comparator.comparing(Repository::getFork_number).reversed());
+            System.out.println("Repositories are sorted.");
 
         } catch (Exception e) {
             System.out.println("Exception in NetClientGet:- " + e);

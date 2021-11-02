@@ -1,15 +1,15 @@
-public class User {
+public class User implements Comparable<User>{
 
     private String user_url;  // json field - url
     private String repo_name; // passed by repo itself
     private String username;  // json field - login
-    private int commit_count; // json field - contributions
-    private int followers ;   // json field - url - followers
+    private Integer commit_count; // json field - contributions
+    private Integer followers ;   // json field - url - followers
 
     public User() {
     }
 
-    public User(String user_url, String repo_name, String username, int commit_count, int followers) {
+    public User(String user_url, String repo_name, String username, Integer commit_count, Integer followers) {
         this.user_url = user_url;
         this.repo_name = repo_name;
         this.username = username;
@@ -41,24 +41,33 @@ public class User {
         this.username = username;
     }
 
-    public int getCommit_count() {
+    public Integer getCommit_count() {
         return commit_count;
     }
 
-    public void setCommit_count(int commit_count) {
+    public void setCommit_count(Integer commit_count) {
         this.commit_count = commit_count;
     }
 
-    public int getFollowers() {
+    public Integer getFollowers() {
         return followers;
     }
 
-    public void setFollowers(int followers) {
+    public void setFollowers(Integer followers) {
         this.followers = followers;
     }
 
     @Override
     public String toString() {
         return getRepo_name()+";"+getUsername()+";"+getCommit_count()+";"+getFollowers()+"\n";
+    }
+
+
+    @Override
+    public int compareTo(User o) {
+        if (this.getCommit_count() == null || o.getCommit_count() == null) {
+            return 0;
+        }
+        return this.getCommit_count().compareTo(o.getCommit_count());
     }
 }
