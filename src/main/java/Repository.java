@@ -1,3 +1,8 @@
+/**
+ * This class is created in order to determine Repository model
+ *  We are getting specific datas from json string in order to prevent cast json object into class that has all attributes
+ */
+
 public class Repository implements Comparable<Repository> {
 
     // Class members
@@ -16,6 +21,13 @@ public class Repository implements Comparable<Repository> {
         this.description = "";
     }
 
+    /**
+     *
+     * @param repo_name repository name that we need
+     * @param fork_number how many forks that repository has
+     * @param repo_url html url of repository
+     * @param description description of repository
+     */
     public Repository(String repo_name, Integer fork_number, String repo_url, String description) {
         this.repo_name = repo_name;
         this.fork_number = fork_number;
@@ -23,6 +35,7 @@ public class Repository implements Comparable<Repository> {
         this.description = description;
     }
 
+    /* Typical Getter Setters */
     public String getRepo_name() {
         return repo_name;
     }
@@ -63,11 +76,12 @@ public class Repository implements Comparable<Repository> {
         this.description = description;
     }
 
+    /* toString method that gives us the object in csv format */
     @Override
     public String toString() {
         return getRepo_name()+","+getFork_number()+","+getRepo_url()+","+getDescription()+"\n";
     }
-
+    // CompareTo method that we need to sort the repository list
     @Override
     public int compareTo(Repository o) {
         if (this.getFork_number() == null || o.getFork_number() == null) {

@@ -1,4 +1,7 @@
-public class User implements Comparable<User>{
+/**
+ *  User model that we need in order to store spesific data fields of json data
+ */
+public class User {
 
 
     private String repo_name; // passed by repo itself
@@ -7,8 +10,20 @@ public class User implements Comparable<User>{
     private Integer followers ;   // json field - url - followers
 
     public User() {
+        this.repo_name = "";
+        this.username = "";
+        this.commit_count = 0;
+        this.followers = 0;
     }
 
+    /**
+     *
+     * @param user_url in order to find count of followers
+     * @param repo_name the repo that user contributed
+     * @param username user's username
+     * @param commit_count user's contribution count to the repo that given above
+     * @param followers follower count of user
+     */
     public User(String user_url, String repo_name, String username, Integer commit_count, Integer followers) {
 
         this.repo_name = repo_name;
@@ -18,7 +33,7 @@ public class User implements Comparable<User>{
     }
 
 
-
+    /* Typical Getter Setter methods */
     public String getRepo_name() {
         return repo_name;
     }
@@ -51,17 +66,11 @@ public class User implements Comparable<User>{
         this.followers = followers;
     }
 
+    /* toString method to print user in csv format */
     @Override
     public String toString() {
         return getRepo_name()+","+getUsername()+","+getCommit_count()+","+getFollowers()+"\n";
     }
 
 
-    @Override
-    public int compareTo(User o) {
-        if (this.getCommit_count() == null || o.getCommit_count() == null) {
-            return 0;
-        }
-        return this.getCommit_count().compareTo(o.getCommit_count());
-    }
 }
