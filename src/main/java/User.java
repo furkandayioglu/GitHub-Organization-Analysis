@@ -59,7 +59,7 @@ public class User implements Comparable<User>{
 
     @Override
     public String toString() {
-        return getRepo_name()+";"+getUsername()+";"+getCommit_count()+";"+getFollowers()+"\n";
+        return getRepo_name()+","+getUsername()+","+getCommit_count()+","+getFollowers()+"\n";
     }
 
 

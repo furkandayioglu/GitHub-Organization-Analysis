@@ -5,9 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.util.Comparators;
 import sun.net.www.http.HttpClient;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,8 +61,20 @@ public class Main {
             repositoryList.sort(Comparator.comparing(Repository::getFork_number).reversed());
             System.out.println("Repositories are sorted.");
 
-        } catch (Exception e) {
-            System.out.println("Exception in NetClientGet:- " + e);
+            System.out.println("Repositories are being written into file...");
+            FileWriter repo_fw = new FileWriter(organization+"_repos.csv");
+            BufferedWriter repo_bw = new BufferedWriter(repo_fw);
+            PrintWriter repo_prw = new PrintWriter(repo_bw);
+            int printlen = repositoryList.size()<num_of_repos ?  repositoryList.size() : num_of_repos;
+            repo_prw.write("repo,forks,url,description\n");
+
+            for(int line = 0;line<printlen;line++){
+                repo_prw.write(repositoryList.get(line).toString());
+                repo_prw.flush();
+            }
+            System.out.println("Repositories written into file.");
+        } catch (IOException ioe) {
+            System.out.println("IO Exception:- " + ioe.getMessage());
         }
     }
 

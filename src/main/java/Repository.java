@@ -56,7 +56,7 @@ public class Repository implements Comparable<Repository> {
 
     @Override
     public String toString() {
-        return getRepo_name()+";"+getFork_number()+";"+getRepo_url()+";"+getDescription()+"\n";
+        return getRepo_name()+","+getFork_number()+","+getRepo_url()+","+getDescription()+"\n";
     }
 
     @Override
